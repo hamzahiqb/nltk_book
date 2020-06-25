@@ -1,0 +1,38 @@
+if ! [ -x "$(command -v brew)" ]; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+fi
+
+if ! [ -x "$(command -v node)" ]; then
+    brew install node
+fi
+
+if ! [ -x "$(command -v poetry)" ]; then
+    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
+fi
+
+jupyter_exts=( \
+    "@jupyter-widgets/jupyterlab-manager" \
+    "@aquirdturtle/collapsible_headings" \
+    "@jupyterlab/commenting-extension" \
+    "@jupyterlab/toc" \
+    "@krassowski/jupyterlab_go_to_definition" \
+    "@ryantam626/jupyterlab_code_formatter" \
+    "dask-labextension" \
+    "jupyterlab-dash" \
+    "jupyterlab-plotly" \
+    "jupyterlab-spreadsheet" \
+    "@jupyterlab/debugger" \
+)
+
+server_exts=( \
+    "jupyterlab_code_formatter" \
+    "dask_labextension" \
+    "jupyterlab-dash" \
+    "jupyterlab-git" \
+)
+
+echo "Installing Jupyterlab extentions:"
+echo ${jupyter_exts[*]}
+poetry add -D ${server_exts[*]}
+poetry run jupyter labextension install ${jupyter_exts[*]}
+poetry run jupyter serverextension enable ${server_exts[*]}

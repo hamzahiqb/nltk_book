@@ -9,9 +9,18 @@ python = "^3.8"
 pandas = "^1.0.5"
 numpy = "^1.19.0"
 nltk = "^3.5"
+matplotlib = "^3.2.2"
+seaborn = "^0.10.1"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.5.1"
+jupyterlab = "^2.1.5"
+jupyterlab_code_formatter = "^1.3.1"
+dask_labextension = "^2.0.2"
+jupyterlab-dash = "^0.1.0-alpha.3"
+jupyterlab-git = "^0.20.0"
+isort = "^4.3.21"
+black = "^19.10b0"
 
 [build-system]
 requires = ["poetry>=0.12"]
